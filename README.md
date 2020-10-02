@@ -18,9 +18,9 @@ func greet(name: String) -> String {
 }
 ```
 
-### Reduce amount of private extensions
+### Reduce amount of extensions
 
-Private extensions add 150-200 MS per extension. Common sense dictates that we should extend classes which we are not the author of rather than using this language feature as a tool for styling/grouping methods in our own codebase.
+Extensions add 150-200 MS per extension. Common sense dictates that we should extend classes which we are not the author of rather than using this language feature as a tool for styling/grouping methods in our own codebase.
 
 #### Prefer:
 ```swift
