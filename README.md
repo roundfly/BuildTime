@@ -20,7 +20,7 @@ func greet(name: String) -> String {
 
 ### Reduce amount of private extensions
 
-Private extensions add 150-200 MS per extension. Common sense dictates that we should extend classes which we are not the author of rather than using private extension as a tool for styling/grouping methods in our own codebase.
+Private extensions add 150-200 MS per extension. Common sense dictates that we should extend classes which we are not the author of rather than using this language feature as a tool for styling/grouping methods in our own codebase.
 
 #### Prefer:
 ```swift
@@ -77,7 +77,7 @@ While the above example might seem contrived, it's a perfect demonstration of th
 let frame = CGRect(x: 0, y: 40, width: (view.frame.width + subview.frame.height) / 2, height: view.frame.height / 2)
 
 ```
-This inconspicuous looking piece of code might add a whole second worth (it adds up) to the overall build time, prefer:
+This inconspicuous looking piece of code might add a whole seconds worth (it adds up) to the overall build time, prefer:
 
 ```swift
 
@@ -89,3 +89,22 @@ let frame = CGRect(x: 0, y: 40, width: width, height: height)
 
 ```
 
+### Mark classes as final and avoid optional overusage
+
+Marking a class as final steers clear of dynamic dispatch and vtable lookup, everything is dispatched statically for an added benefit of faster build time.
+
+#### Prefer:
+```swift
+
+final class DetailViewController: UIViewController {
+  // ...
+}
+```
+
+#### Avoid:
+```swift
+class DetailViewController: UIViewController {
+  // ...
+}
+```
+Overuse of optionals is most likely a symptom of an architectural flaw. Prefer avoiding optionals wherever it makes sense to do so, also prefer to avoid using the double equals operator == to compare an optional with a nil literal. This operation requires internally that the optional be unwrapped as well as the nil literal be resolved via its ExpressibleByNilProtocol protocol.  
