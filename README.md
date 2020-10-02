@@ -1,7 +1,7 @@
 
 This document provides an acceptance criteria for build time sanitization, it attempts to bestow best practices and guidelines for producing optimized code without sacrificing brevity. It is a living document which is susceptible to change.
 
-### Prefer string interpolation over concatenation
+### Consider using string interpolation over concatenation
 
 Concatenating strings via the + operator is much less efficient than returning a string literal with interpolated values, this cost is inherent with the complexities of Unicode as well as having to resolve operator overloading.
 
